@@ -1,0 +1,42 @@
+function buildAcronym(str) {
+  let splittedText = str.split(" ")
+  let letters = [];
+  const stopwords = ["a","for","an","and","by","of"]
+  
+  let filteredLetters = splittedText.filter((element, index) => {
+    if(index === 0){
+      return true;
+    }
+    
+    return !stopwords.includes(element.toLowerCase())
+  })
+  
+  for(let i in filteredLetters){
+    letters.push(filteredLetters[i].split("")[0])
+  }
+  
+  let uppercasedLetters = letters.map(element => element.toUpperCase())
+  
+  return `"${uppercasedLetters.join("")}"`
+}
+
+console.log(buildAcronym("Search Engine Optimization")); 
+// "SEO"
+
+console.log(buildAcronym("Frequently Asked Questions")); 
+// "FAQ"
+
+console.log(buildAcronym("National Aeronautics and Space Administration")); 
+// "NASA"
+
+console.log(buildAcronym("Federal Bureau of Investigation")); 
+// "FBI"
+
+console.log(buildAcronym("For your information")); 
+// "FYI"
+
+console.log(buildAcronym("By the way")); 
+// "BTW"
+
+console.log(buildAcronym("An unstoppable herd of waddling penguins overtakes the icy mountains and sings happily")); 
+// "AUHWPOTIMSH"
